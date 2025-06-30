@@ -30,4 +30,21 @@ def 메모장글쓰기(파일):
         파일.write(글)
     파일.close()
 
+def 메모장읽기():
+    파일명 = input('읽을 파일을 입력하세요')
+    입력받은파일 = open(f'game\\{파일명}', encoding='UTF-8', mode='r')
+    #print(입력받은파일.readlines())
+    입력받은파일.readlines()
+    return 입력받은파일.close()
+
+def 메모장글추가():
+    파일명 = input('글추가할 파일을 입력하세요')
+    글추가파일 = open(f'game\\{파일명}', encoding='UTF-8', mode='a')
+    글추가파일.write(input("추가할 내용을 입력하세요"))
+    글추가파일.close()
+    return 
+
+
 메모장글쓰기(메모장생성()) #마지막
+메모장글추가()
+메모장읽기()
