@@ -1,10 +1,11 @@
 print("안녕하세요")
-
-#예제1 파일 안에 내용 보기
-#file = open('README.md' ,encoding="UTF-8")
-#print(type(file.readlines()))
-#for row in file.readlines() :
-#    print(row)
+'''
+예제1 파일 안에 내용 보기
+file = open('README.md' ,encoding="UTF-8")
+print(type(file.readlines()))
+for row in file.readlines() :
+    print(row)
+'''
 
 #예제2 파일생성 및 내용추가
 #1.파일 생성 및 읽기 모드는 동시에 사용이 안됨
