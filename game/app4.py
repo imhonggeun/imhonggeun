@@ -8,8 +8,10 @@ arr = f.readlines() #리스트
 def 함수표():
     arr2 = []
     for i in range(0, len(arr)): # 리스트 길이만큼 숫자를 지정
-        row = arr[i].replace("\n", "") # 리스트 안에서 \n를 지운다
-        arr2.append(row.split(",")) # ,를 기준으로 빈칸도 공간으로 표시한다
+        #print(f'뭐야{arr[i]}')
+        #row = arr[i].replace("\n", "") # 리스트 안에서 \n를 지운다
+        row = arr[i]
+        #arr2.append(row.split(",")) # ,를 기준으로 빈칸도 공간으로 표시한다
     for row in arr2: 
         #print(f'row 뭐야{row}')
         행 = ""
@@ -17,4 +19,5 @@ def 함수표():
             #print(f"이건 뭐야 {v}")
             행 += '0' if v == 'O' else ' '
         print(행)
+
 함수표()
