@@ -22,23 +22,24 @@ col_name=cur.description
 
 print(col_name[0])
 
-# name = ''
-# for row in col_name:
-#     name += row[0] + ("\t\t\t" if row[0] == 'regDate' else "\t")
-# print(name)
-# if result == None:
-#     print("데이터 없습니다.")
-# else:
-#     row=''
-#     #print('no\ttitle\tdesc\tcontent\tregDate\t\t\tmodDate')
-#     for col in result:
-#         #print(col)
-#         if col == 'None':
-#             row += ('없음\t')
-#         else:
-#             row += (f'{col}\t')
-#     print(row)
-# print(type(result))
+name = ''
+for row in col_name:
+    name += row[0] + ("\t\t\t" if row[0] == 'regDate' else "\t")
+print(name)
+if result == None:
+    print("데이터 없습니다.")
+else:
+    row=''
+    #print('no\ttitle\tdesc\tcontent\tregDate\t\t\tmodDate')
+    for col in result:
+        #print(col)
+        if col == 'None':
+            row += ('없음\t')
+        else:
+            row += (f'{col}\t')
+    print(row)
+print(result)
+#print(type(result))
 
 cur.close()
 conn.close()
