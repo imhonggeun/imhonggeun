@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from model import users
 
 controller = APIRouter(
     prefix="",
@@ -13,4 +14,8 @@ def root():
 
 @controller.get("/data")
 def data(d1,d2):
-    return {"d1" : d1, "d2":d2}
+    return {"d1":d1, "d2":d2}
+
+@controller.get("/db")
+def db():
+    return {"users" : users.findAll()}
