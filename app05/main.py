@@ -1,8 +1,7 @@
 from fastapi import FastAPI
+from controller import home
 
 app = FastAPI()
 
-@app.get("/")
-def root():
-    print("web Start!!")
-    return {"name" : "AI"}
+app.get("/")
+app.include_router(home.controller)
