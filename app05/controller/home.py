@@ -1,11 +1,16 @@
-from fastapi import APIRouter
+from fastapi import APIRouter , Form
 from model import users
+from typing import Annotated
+from pydantic import BaseModel
 
 controller = APIRouter(
     prefix="",
     tags=[],
     responses={404: {"description": "Not found"}}
 )
+class User(BaseModel):
+    id: str
+    pwd: str
 
 @controller.get("/")
 def root():
@@ -23,3 +28,20 @@ def db():
 @controller.get("/id")
 def userid(id):
     return {"user" : users.findOne(id)}
+
+#@controller.get("/login")
+#def login(id,pwd):
+#    return {"user" : users.login(id,pwd)}
+
+@controller.get("/login")
+def login(id,pwd):
+    return {"user" : users.login(id,pwd)}
+
+@controller.post("/login")
+def login(id: Annotated[str, Form(...)], pwd: Annotated[str, Form(...)]):
+    return {"user" : users.login(id,pwd)}
+
+@controller.post("/login2")
+def login(user : User):
+    return {"user" : users.login(user.id,user.pwd)}
+            

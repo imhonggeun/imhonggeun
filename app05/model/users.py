@@ -12,7 +12,7 @@ def findAll():
     else :
         return []
 
-def findOne(id):
+def findOne():
     conn = dbpool.getConn()
     if conn != None:
         cur = conn.cursor()
@@ -20,5 +20,20 @@ def findOne(id):
         cur.execute(sql)
         result = cur.fetchone()
         return result
+    else :
+        return {}
+    
+def login(id,pwd):
+    conn = dbpool.getConn()
+    if conn != None:
+        cur = conn.cursor()
+        sql = f"SELECT * FROM USER WHERE id ='{id}';"
+        cur.execute(sql)
+        result = cur.fetchone()
+        
+        if result != None:
+            if pwd == result[2]:
+                return {"no": result[0], "id": result[1]}
+        
     else :
         return {}
