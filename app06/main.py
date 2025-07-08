@@ -1,7 +1,5 @@
-from fastapi import FastAPI
+from fastapi import FastAPI ,Form
+from controller import root
 
 app = FastAPI()
-
-@app.get("/")
-def root():
-    return {"test": 1}
+app.include_router(root.controller)
