@@ -2,8 +2,23 @@ from fastapi import FastAPI,Form
 from typing import Annotated
 import mariadb,os
 import httpx
+from fastapi.middleware.cors import CORSMiddleware
+
+origins = [
+    "http://localhost",
+    "http://localhost:5500",
+    "http://127.0.0.1:5500",
+]
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/")
@@ -68,7 +83,14 @@ async def movie(mn : str):
         response = await client.get(url)
         return response.json()
     
-
+@app.get("/movie/item")
+async def movie(id : str):
+    async with httpx.AsyncClient() as client:
+        key = os.getenv('API_KEY')
+        url = f"https://www.omdbapi.com/?apikey={key}&i={id}&plot=full"
+        response = await client.get(url)
+        return response.json()
+    
 # def main():
 #     print("Hello from app08!")
 
