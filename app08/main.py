@@ -1,7 +1,10 @@
 from fastapi import FastAPI,Form
 from typing import Annotated
 import mariadb,os
+import httpx
+
 app = FastAPI()
+
 
 @app.get("/")
 def root():
@@ -56,10 +59,16 @@ def year( y : str):
     cur.close()
     conn.close()
     return {"result" : result}
+
+@app.get("/movie")
+async def movie(mn : str):
+    async with httpx.AsyncClient() as client:
+        key = os.getenv('API_KEY')
+        url = f"https://www.omdbapi.com/?apikey={key}&s={mn}"
+        response = await client.get(url)
+        return response.json()
     
 
-#}
-#
 # def main():
 #     print("Hello from app08!")
 
